@@ -1,0 +1,241 @@
+
+<html>
+<head>
+	<title>Circles</title>
+	<script type="text/javascript" src="paper-full.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.4/howler.core.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="circles.css">
+	<script type="text/paperscript" canvas="myCanvas">
+	// Create a Paper.js Path to draw a line into it:
+	
+ /*for (var i = 0; i < 1000; i+=100){
+      for (var j = 0; j < 1000; j+=100) {
+         // var center = new Point(20 + i * 100, 10 + j * 100);
+          var path = new Path.Circle(new Point(i,j), 10);
+          path.fillColor = 'red';
+      }
+  }*/
+
+var keyData = {
+	q: {
+		sound: new Howl({
+  		src: ['sounds/bubbles.mp3']
+		}),
+		color: '#1abc9c'
+	},
+	w: {
+		sound: new Howl({
+  	src: ['sounds/clay.mp3']
+		}),
+		color: '#2ecc71'
+	},
+	e: {
+		sound: new Howl({
+  src: ['sounds/confetti.mp3']
+		}),
+		color: '#3498db'
+	},
+	r: {
+		sound: new Howl({
+  src: ['sounds/corona.mp3']
+		}),
+		color: '#9b59b6'
+	},
+		t: {
+		sound: new Howl({
+  	  src: ['sounds/dotted-spiral.mp3']
+		}),
+		color: '#34495e'
+	},
+	y: {
+		sound: new Howl({
+  		src: ['sounds/flash-1.mp3']
+		}),
+		color: '#16a085'
+	},
+	u: {
+		sound: new Howl({
+  		src: ['sounds/flash-2.mp3']
+		}),
+		color: '#27ae60'
+	},
+	i: {
+		sound: new Howl({
+  		src: ['sounds/flash-3.mp3']
+		}),
+		color: '#2980b9'
+	},
+	o: {
+		sound: new Howl({
+		src: ['sounds/glimmer.mp3']
+		}),
+		color: '#8e44ad'
+	},
+	p: {
+		sound: new Howl({
+  		src: ['sounds/moon.mp3']
+		}),
+		color: '#2c3e50'
+	},
+	a: {
+		sound: new Howl({
+  		src: ['sounds/pinwheel.mp3']
+		}),
+		color: '#f1c40f'
+	},
+	s: {
+		sound: new Howl({
+  		src: ['sounds/piston-1.mp3']
+		}),
+		color: '#e67e22'
+	},
+		d: {
+		sound: new Howl({
+  		src: ['sounds/piston-2.mp3']
+		}),
+		color: '#e74c3c'
+	},
+	f: {
+		sound: new Howl({
+  		src: ['sounds/prism-1.mp3']
+		}),
+		color: '#95a5a6'
+	},
+	g: {
+		sound: new Howl({
+  		src: ['sounds/prism-2.mp3']
+		}),
+		color: '#f39c12'
+	},
+	h: {
+		sound: new Howl({
+  		src: ['sounds/prism-3.mp3']
+		}),
+		color: '#d35400'
+	},
+	j: {
+		sound: new Howl({
+  		src: ['sounds/splits.mp3']
+		}),
+		color: '#1abc9c'
+	},
+	k: {
+		sound: new Howl({
+  		src: ['sounds/squiggle.mp3']
+		}),
+		color: '#2ecc71'
+	},
+	l: {
+		sound: new Howl({
+  		src: ['sounds/strike.mp3']
+		}),
+		color: '#3498db'
+	},
+	z: {
+		sound: new Howl({
+  		src: ['sounds/suspension.mp3']
+		}),
+		color: '#9b59b6'
+	},
+	x: {
+		sound: new Howl({
+  		src: ['sounds/timer.mp3']
+		}),
+		color: '#34495e'
+	},
+	c: {
+		sound: new Howl({
+  		src: ['sounds/ufo.mp3']
+		}),
+		color: '#16a085'
+	},
+	v: {
+		sound: new Howl({
+  		src: ['sounds/veil.mp3']
+		}),
+		color: '#27ae60'
+	},
+	b: {
+		sound: new Howl({
+  		src: ['sounds/wipe.mp3']
+		}),
+		color: '#2980b9'
+	},
+	n: {
+		sound: new Howl({
+			src: ['sounds/zig-zag.mp3']
+		}),
+		color: '#8e44ad'
+	},
+	m: {
+		sound: new Howl({
+  		src: ['sounds/moon.mp3']
+		}),
+		color: '#2c3e50'
+	}
+}
+
+
+/*  var sound1 = new Howl({
+  src: ['Sounds/bubbles.mp3']
+});
+  var sound2 = new Howl({
+  src: ['Sounds/clay.mp3']
+})*/
+  var circles=[];
+
+  function onKeyDown(event) {
+
+	// When a key is pressed, set the content of the text item:
+	
+if(keyData[event.key]){
+	var maxPoint = new Point(view.size.width, view.size.height);
+	var randomPoint = Point.random();
+	var point= maxPoint * randomPoint;
+	var newCircle= new Path.Circle(point, 500)
+	newCircle.fillColor=keyData[event.key].color;
+   keyData[event.key].sound.play();
+	circles.push(newCircle);
+
+}
+	
+	//console.log(maxPoint)
+	
+	/*if(event.key ==="a"){
+		sound1.play();
+		newCircle.fillColor="blue";
+
+	}
+	else if(event.key ==="s"){
+		sound2.play();
+		newCircle.fillColor="#16a085";
+
+	}
+	*/
+	
+   
+	/*console.log(view.size.height)
+	console.log(view.size.width)*/
+}
+/*var animatedCircle =new Path.Circle(new Point(300,300),100)
+animatedCircle.fillColor="red"*/
+function onFrame(event) {
+
+	for(var i=0;i<circles.length;i++){
+		//console.log(circles[i])
+
+		circles[i].fillColor.hue +=1;
+		circles[i].scale(0.9);
+		
+	}
+	/*animatedCircle.fillColor.hue +=1;*/
+	//animatedCircle.scale(0.9)
+}
+
+
+</script>
+</head>
+<body>
+<canvas id="myCanvas" resize></canvas>
+</body>
+</html>
